@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +15,11 @@ public class CharacterManager : MonoBehaviour {
 	void Start () {
 
 		for (int i = 0; i < penguins.Length; i++) {
-			Instantiate (penguins [i], spawnPoints [i].position, spawnPoints [i].rotation);	
+
+		    var tmpTransform = spawnPoints[i].transform.position;
+		    tmpTransform = new Vector3(tmpTransform.x, tmpTransform.y + UnityEngine.Random.Range(10, 20), tmpTransform.z);
+
+		    Instantiate (penguins [i], tmpTransform, spawnPoints [i].rotation);
 			penguins[i].GetComponent<PenguinControlScript> ().SetId (i);
 		}
 	}
