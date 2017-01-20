@@ -8,14 +8,20 @@ public class CharacterManager : MonoBehaviour {
 	public GameObject[] penguins;
 	public Transform[] spawnPoints;
 
+
+
 	// Use this for initialization
 	void Start () {
-		penguins = new GameObject[5];
-		spawnPoints = new Transform[5];
+
+		for (int i = 0; i < penguins.Length; i++) {
+			Instantiate (penguins [i], spawnPoints [i].position, spawnPoints [i].rotation);	
+			penguins[i].GetComponent<PenguinControlScript> ().SetId (i);
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		var controller = penguins [2].GetComponent<PenguinControlScript> ();
+		controller.enabled = true;
 	}
 }
