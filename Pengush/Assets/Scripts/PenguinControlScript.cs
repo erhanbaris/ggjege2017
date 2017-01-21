@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PenguinControlScript : MonoBehaviour
 {
-	Vector3 currentJumpVelocity;
-	bool isJumping = false;
 	public int JumpingSpeed = 5;
 	public bool IsVisible = true;
 	public int id;
-
 	public static int SelectedId = -1;
 
-	// Use this for initialization
+	Vector3 currentJumpVelocity;
+	bool isJumping = false;
+
 	void Start()
 	{
 	}
@@ -41,9 +40,6 @@ public class PenguinControlScript : MonoBehaviour
 		CharacterController controller = GetComponent<CharacterController>();
 		Vector3 moveVelocity = Vector3.zero;
 
-		//moveVelocity.x = Input.GetAxis ("Horizontal");
-
-
 		if (Input.GetButtonDown("Jump"))
 		{
 			if (!isJumping && SelectedId == id)
@@ -67,6 +63,5 @@ public class PenguinControlScript : MonoBehaviour
 			//controller.SimpleMove (moveVelocity);
 			currentJumpVelocity = Vector3.zero;
 		}
-		
 	}
 }
