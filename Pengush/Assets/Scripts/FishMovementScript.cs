@@ -27,10 +27,14 @@ public class FishMovementScript : MonoBehaviour {
 	void Move(){
 		transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position,   speed*Time.deltaTime);
 
-		if (transform.position == targetWayPoint.position) {
+		if (transform.position == targetWayPoint.position)
+		{
+		    currentWayPoint++;
 
-			currentWayPoint++;
-			targetWayPoint = wayPointArray [currentWayPoint];
+		    if (currentWayPoint < this.wayPointArray.Length)
+		        targetWayPoint = wayPointArray[currentWayPoint];
+		    else
+		        targetWayPoint = null;
 		}
 	}
 }

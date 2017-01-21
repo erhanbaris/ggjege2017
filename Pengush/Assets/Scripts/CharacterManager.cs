@@ -26,7 +26,7 @@ public class CharacterManager : MonoBehaviour
             if (!isIdAdded)
                 visiblePenguins.Add(visibleId);
 
-            if (visiblePenguins.Count >= 5)
+            if (visiblePenguins.Count >= 3)
                 break;
         }
 
