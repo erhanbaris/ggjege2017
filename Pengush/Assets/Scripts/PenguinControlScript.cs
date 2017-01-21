@@ -26,7 +26,6 @@ public class PenguinControlScript : MonoBehaviour
     {
         if (collision.transform.tag == "ENEMY")
         {
-            Debug.Log("OnColliderEnter");
             this.gameObject.SetActive(false);
         }
     }
@@ -34,7 +33,6 @@ public class PenguinControlScript : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         SelectedId = id;
-        Debug.Log("OnTriggerEnter");
     }
 
     void Update()
