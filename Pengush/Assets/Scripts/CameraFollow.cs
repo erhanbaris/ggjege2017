@@ -11,7 +11,6 @@ public class CameraFollow : MonoBehaviour {
 	private Vector3 velocity = Vector3.zero;
 	public static bool FollowEnemy = false;
 
-	private Vector3 offset;
 	private Vector3 savedPosition;
 
 	void Start () 
@@ -23,8 +22,6 @@ public class CameraFollow : MonoBehaviour {
 	{
 		if (FollowEnemy)
 		{
-			offset = transform.position - player.transform.position;
-
 			Vector3 point = camera.WorldToViewportPoint(player.transform.position);
 			Vector3 delta = player.transform.position - camera.ViewportToWorldPoint(new Vector3(0.5f, point.y, 40f)); 
 			Vector3 destination = transform.position + delta;

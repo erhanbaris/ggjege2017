@@ -27,12 +27,9 @@ public class PenguinControlScript : MonoBehaviour
 		{
 			CharacterManager.Damaged = true;
 			this.gameObject.SetActive(false);
-		}
-	}
 
-	public void OnTriggerEnter(Collider other)
-	{
-		SelectedId = id;
+		    CharacterManager.Instance.PenguinDied(id);
+		}
 	}
 
 	void Update()
@@ -60,7 +57,6 @@ public class PenguinControlScript : MonoBehaviour
 		}
 		else
 		{
-			//controller.SimpleMove (moveVelocity);
 			currentJumpVelocity = Vector3.zero;
 		}
 	}
