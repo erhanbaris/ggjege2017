@@ -28,7 +28,24 @@ public class PenguinControlScript : MonoBehaviour
 			CharacterManager.Damaged = true;
 			this.gameObject.SetActive(false);
 
-		    CharacterManager.Instance.PenguinDied(id);
+			CharacterManager.Instance.PenguinDied(id);
+		}
+	}
+
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "ENEMY")
+		{
+			CharacterManager.Damaged = true;
+			this.gameObject.SetActive(false);
+
+			CharacterManager.Instance.PenguinDied(id);
+		}
+		else if (other.tag == "GREEN_FISH")
+		{
+			other.gameObject.SetActive(false);
+
 		}
 	}
 
