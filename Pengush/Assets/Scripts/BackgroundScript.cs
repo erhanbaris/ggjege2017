@@ -6,7 +6,7 @@ public class BackgroundScript : MonoBehaviour {
 
 	public GameObject[] clouds;
 	public Transform[] cloudSpawnPoints;
-	public float spawnTime = 8.0f;
+	public float spawnTime = 0.10f;
 
 	// Use this for initialization
 	void Start () {

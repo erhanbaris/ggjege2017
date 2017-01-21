@@ -10,7 +10,7 @@ public class CloudMoveandDestroyScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-		transform.Translate (new Vector3 (-1, 0, 0) * 5 * Time.deltaTime);
+	void Update () {
+		transform.Translate (new Vector3 (-1, 0, 0) * 15 * Time.deltaTime);
 	}
 }
