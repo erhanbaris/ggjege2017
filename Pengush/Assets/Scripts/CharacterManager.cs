@@ -38,11 +38,11 @@ public class CharacterManager : MonoBehaviour
 
         while (true)
         {
-            var randomId = UnityEngine.Random.Range(0, 10);
+            var randomId = UnityEngine.Random.Range(0, 7);
             if (!LivePenguins.Contains(randomId))
                 LivePenguins.Add(randomId);
 
-            if (LivePenguins.Count >= 9)
+            if (LivePenguins.Count >= 7)
                 break;
         }
 
