@@ -10,6 +10,7 @@ public class FishMovementScript : MonoBehaviour {
 	Transform targetWayPoint;
 	public float speed = 15f;
 
+
 	// Use this for initialization
 	void Start () {
 		
@@ -23,6 +24,11 @@ public class FishMovementScript : MonoBehaviour {
 			}
 			Move ();
 		}
+
+		if(targetWayPoint != null)
+			transform.LookAt(targetWayPoint.position);
+		
+		Destroy (gameObject, 12);
 	}
 	void Move(){
 		transform.position = Vector3.MoveTowards(transform.position, targetWayPoint.position,   speed*Time.deltaTime);
@@ -31,8 +37,9 @@ public class FishMovementScript : MonoBehaviour {
 		{
 		    currentWayPoint++;
 
-		    if (currentWayPoint < this.wayPointArray.Length)
-		        targetWayPoint = wayPointArray[currentWayPoint];
+			if (currentWayPoint < this.wayPointArray.Length) {
+				targetWayPoint = wayPointArray [currentWayPoint];
+			}
 		    else
 		        targetWayPoint = null;
 		}
