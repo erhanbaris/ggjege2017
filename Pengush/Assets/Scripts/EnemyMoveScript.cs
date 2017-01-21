@@ -12,6 +12,6 @@ public class EnemyMoveScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		transform.Translate(new Vector3(0.3f, 0, 0));
+		transform.Translate(new Vector3(0.6f, 0, 0));
 	}
 }

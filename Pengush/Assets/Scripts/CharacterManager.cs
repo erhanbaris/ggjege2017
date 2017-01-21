@@ -9,6 +9,11 @@ public class CharacterManager : MonoBehaviour
     public GameObject[] penguins;
     public Transform[] spawnPoints;
 
+	public static bool Damaged = false;
+	Color damagedColor = new Color(255f, 255f, 255f, 0.5f);
+	float smoothColor = 10f;
+	UnityEngine.UI.Image damagedImage;
+
     void Start()
     {
         List<int> visiblePenguins = new List<int>();
@@ -35,9 +40,20 @@ public class CharacterManager : MonoBehaviour
             penguins[i].GetComponent<PenguinControlScript>().SetId(i);
             penguins[i].gameObject.SetActive(visiblePenguins.Any(x => x == i));
         }
+
+		GameObject[] objs ;
+		objs = GameObject.FindGameObjectsWithTag("BLOOD");
+		foreach(GameObject lightuser in objs) {
+			damagedImage = lightuser.GetComponent<UnityEngine.UI.Image>();
+		}
     }
 
     void Update()
     {
+		if (Damaged)
+			damagedImage.color = damagedColor;
+		else 
+			damagedImage.color = Color.Lerp(damagedImage.color, Color.clear, smoothColor * Time.deltaTime);
+		Damaged = false;
     }
 }
