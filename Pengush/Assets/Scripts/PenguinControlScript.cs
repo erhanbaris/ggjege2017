@@ -53,9 +53,7 @@ public class PenguinControlScript : MonoBehaviour
         }
         else if (other.tag == "GREEN_FISH")
         {
-			Debug.Log ("Yeişilaspdkoj");
-			Debug.Log (other.GetComponent<AudioSource>().clip.name);
-            other.GetComponent<AudioSource>().Play();
+			other.GetComponent<AudioSource>().Play();
             other.gameObject.SetActive(false);
             var gameScript = this.gameObject.GetComponent<GameManagerScript>();
             gameScript.AddScore(10);
@@ -63,11 +61,11 @@ public class PenguinControlScript : MonoBehaviour
     }
 
     void Update()
-    {
+    {		
         CharacterController controller = GetComponent<CharacterController>();
         Vector3 moveVelocity = Vector3.zero;
 
-        if (Input.GetButtonDown("Jump"))
+		if (GameController.Instance.IsGameStarted && Input.GetButtonDown("Jump"))
         {
             if (!isJumping && SelectedId == id)
             {
