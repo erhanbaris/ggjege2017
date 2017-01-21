@@ -23,7 +23,7 @@ public class EnemyCameraFollow : MonoBehaviour
     {
         if (other.transform.tag == "ENEMY")
             CameraFollow.FollowEnemy = StartFollow;
-         gameScript =  other.gameObject.GetComponent<GameManagerScript>();
+        gameScript =  other.gameObject.GetComponent<GameManagerScript>();
 
         if (other.transform.tag == "ENEMY" && gameScript.startScore == false)
         { 

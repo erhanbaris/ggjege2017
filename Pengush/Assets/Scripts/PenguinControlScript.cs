@@ -5,18 +5,22 @@ using UnityEngine.UI;
 
 public class PenguinControlScript : MonoBehaviour
 {
+    public AudioClip DeadClip;
+    public AudioClip JumpClip;
+    public AudioClip EatClip;
+
     public int JumpingSpeed = 5;
     public bool IsVisible = true;
     public int id;
     public static int SelectedId = -1;
 
+    private AudioSource audioSource;
     Vector3 currentJumpVelocity;
     bool isJumping = false;
 
     void Start()
     {
-
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void SetId(int pId)
@@ -28,6 +32,7 @@ public class PenguinControlScript : MonoBehaviour
     {
         if (collision.transform.tag == "ENEMY")
         {
+            collision.gameObject.GetComponent<AudioSource>().Play();
             CharacterManager.Damaged = true;
             this.gameObject.SetActive(false);
 
@@ -40,6 +45,7 @@ public class PenguinControlScript : MonoBehaviour
     {
         if (other.tag == "ENEMY")
         {
+            other.GetComponent<AudioSource>().Play();
             CharacterManager.Damaged = true;
             this.gameObject.SetActive(false);
 
@@ -47,10 +53,11 @@ public class PenguinControlScript : MonoBehaviour
         }
         else if (other.tag == "GREEN_FISH")
         {
+			Debug.Log ("Yeişilaspdkoj");
+			Debug.Log (other.GetComponent<AudioSource>().clip.name);
+            other.GetComponent<AudioSource>().Play();
             other.gameObject.SetActive(false);
-
             var gameScript = this.gameObject.GetComponent<GameManagerScript>();
-
             gameScript.AddScore(10);
         }
     }
@@ -64,6 +71,8 @@ public class PenguinControlScript : MonoBehaviour
         {
             if (!isJumping && SelectedId == id)
             {
+                audioSource.clip = JumpClip;
+                audioSource.Play();
                 isJumping = true;
                 currentJumpVelocity = Vector3.up * 6;
             }

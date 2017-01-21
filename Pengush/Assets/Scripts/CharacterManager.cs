@@ -9,6 +9,7 @@ public class CharacterManager : MonoBehaviour
 {
     public GameObject[] penguins;
     public Transform[] spawnPoints;
+    public Transform Arrow;
 
     public static CharacterManager Instance;
     public static List<int> LivePenguins = new List<int>();
@@ -16,6 +17,9 @@ public class CharacterManager : MonoBehaviour
     Color damagedColor = new Color(255f, 255f, 255f, 0.5f);
     float smoothColor = 10f;
     UnityEngine.UI.Image damagedImage;
+
+    public float dampTime = 1.15f;
+    private Vector3 velocity = Vector3.zero;
 
     void Awake()
     {
@@ -31,6 +35,13 @@ public class CharacterManager : MonoBehaviour
         foreach (GameObject lightuser in objs)
             damagedImage = lightuser.GetComponent<UnityEngine.UI.Image>();
     }
+
+
+    void FixedUpdate()
+    {
+
+    }
+
 
     public void Restart()
     {
@@ -52,7 +63,8 @@ public class CharacterManager : MonoBehaviour
         for (int i = 0; i < penguins.Length; ++i)
         {
             var tmpTransform = spawnPoints[i].transform.position;
-            tmpTransform = new Vector3(tmpTransform.x, tmpTransform.y + UnityEngine.Random.Range(35, 55), tmpTransform.z);
+            tmpTransform = new Vector3(tmpTransform.x, tmpTransform.y + UnityEngine.Random.Range(35, 55),
+                tmpTransform.z);
 
             Instantiate(penguins[i], tmpTransform, spawnPoints[i].rotation);
             penguins[i].GetComponent<PenguinControlScript>().SetId(i);
