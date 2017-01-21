@@ -15,6 +15,13 @@ public class EnemySpawnerScript : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.A)) {
 			Instantiate (Wave, transform.position, transform.rotation);
-		}
+
+            var charMangaer = GetComponent<CharacterManager>();
+         
+            if(charMangaer!=null)
+            {
+                var livePenguins = charMangaer.GetLivePenguins();
+            }
+        }
 	}
 }

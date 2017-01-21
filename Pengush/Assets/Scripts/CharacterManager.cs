@@ -47,6 +47,7 @@ public class CharacterManager : MonoBehaviour
         }
 
         LivePenguins = LivePenguins.OrderBy(x => x).ToList();
+        GameManagerScript.Score = 0;
 
         for (int i = 0; i < penguins.Length; ++i)
         {
@@ -107,5 +108,10 @@ public class CharacterManager : MonoBehaviour
             Debug.Log("Game Over");
             Restart();
         }
+    }
+
+    public int GetLivePenguins()
+    {
+        return LivePenguins.Count();
     }
 }

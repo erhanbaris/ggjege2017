@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class EnemyMoveScript : MonoBehaviour {
+public class EnemyMoveScript : MonoBehaviour
+{
+   
+    // Use this for initialization
+    void Start()
+    {
+       
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		transform.Translate(new Vector3(0.6f, 0, 0));
-		Destroy (gameObject, 10);
-	}
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        transform.Translate(new Vector3(0.6f, 0, 0));
+        Destroy(gameObject, 10);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+
+     
+    }
 }
