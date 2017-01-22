@@ -58,6 +58,8 @@ public class CharacterManager : MonoBehaviour
 
             penguins[i].GetComponent<PenguinControlScript>().SetId(i);
             penguins[i].gameObject.SetActive(LivePenguins.Any(x => x == i));
+         
+
         }
 
 		PenguinControlScript.SelectedId = -1;

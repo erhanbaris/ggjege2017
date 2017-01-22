@@ -28,7 +28,7 @@ public class EnemySpawnerScript : MonoBehaviour {
 			Instantiate (Wave, transform.position, transform.rotation);
 		}	
 		else {
-			Instantiate (Whale, transform.position, transform.rotation);
+            Instantiate(Whale, transform.position, transform.rotation );
 		}
 	}
 }
