@@ -11,7 +11,7 @@ public class GameManagerScript : MonoBehaviour
     public static int Score = 0;
 
 	public static GameManagerScript Instance;
-	public bool IsGameStarted = false;
+	public static bool IsGameStarted = false;
 
 	void Awake()
 	{
@@ -64,6 +64,11 @@ public class GameManagerScript : MonoBehaviour
 	{
 		Start ();
 		SetGameStatus(true);
+	}
+
+	public void RestartGame()
+	{
+		StartGame();
 		CharacterManager.Instance.Restart ();
 	}
 
@@ -71,19 +76,15 @@ public class GameManagerScript : MonoBehaviour
 	{
 		IsGameStarted = status;
 		if (IsGameStarted) {
-			var startObjects = GameObject.FindGameObjectWithTag ("PendushStart");
-			if (startObjects != null)
-				startObjects.GetComponent<UnityEngine.UI.Image>().enabled = false;
+			var startObjects = GameObject.FindGameObjectsWithTag ("PendushStart");
+			foreach (var item in startObjects)
+				item.SetActive(false);
 		} else {
-			var startObjects = GameObject.FindGameObjectWithTag ("PendushStart");
-			if (startObjects != null)
-				startObjects.GetComponent<UnityEngine.UI.Image>().enabled = false;
-
 			var endObjects = GameObject.FindGameObjectsWithTag ("PendushEnd");
 			foreach (var item in endObjects)
 				item.GetComponent<UnityEngine.UI.Image> ().enabled = true;
 
-			startObjects = GameObject.FindGameObjectWithTag ("PendushScore");
+			var startObjects = GameObject.FindGameObjectWithTag ("PendushScore");
 			if (startObjects != null)
 				startObjects.GetComponent<UnityEngine.UI.Text>().text = "SCORE: " + GameManagerScript.Score;
 

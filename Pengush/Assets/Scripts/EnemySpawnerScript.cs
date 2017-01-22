@@ -21,7 +21,7 @@ public class EnemySpawnerScript : MonoBehaviour {
         }
 	}
 	void EnemySpawner(){
-		if (!GameManagerScript.Instance.IsGameStarted)
+		if (!GameManagerScript.IsGameStarted)
 			return;
 		
 		if (Random.Range (1, 3) % 2 == 0) {
