@@ -113,7 +113,7 @@ public class CharacterManager : MonoBehaviour
 
         if (LivePenguins.Count == 0)
         {
-			GameController.Instance.SetGameStatus(false);
+			GameManagerScript.Instance.SetGameStatus(false);
         }
     }
 

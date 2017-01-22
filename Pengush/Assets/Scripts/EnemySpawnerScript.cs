@@ -11,7 +11,7 @@ public class EnemySpawnerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("EnemySpawner", 5, 20);
+		InvokeRepeating ("EnemySpawner", 5, 10);
 	}
 	
 	// Update is called once per frame
@@ -21,6 +21,8 @@ public class EnemySpawnerScript : MonoBehaviour {
         }
 	}
 	void EnemySpawner(){
+		if (!GameManagerScript.Instance.IsGameStarted)
+			return;
 		
 		if (Random.Range (1, 3) % 2 == 0) {
 			Instantiate (Wave, transform.position, transform.rotation);
@@ -28,5 +30,5 @@ public class EnemySpawnerScript : MonoBehaviour {
 		else {
 			Instantiate (Whale, transform.position, transform.rotation);
 		}
-		}
+	}
 }

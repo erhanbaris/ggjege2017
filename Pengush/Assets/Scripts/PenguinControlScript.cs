@@ -65,7 +65,7 @@ public class PenguinControlScript : MonoBehaviour
         CharacterController controller = GetComponent<CharacterController>();
         Vector3 moveVelocity = Vector3.zero;
 
-		if (GameController.Instance.IsGameStarted && Input.GetButtonDown("Jump"))
+		if (GameManagerScript.Instance.IsGameStarted && Input.GetButtonDown("Jump"))
         {
             if (!isJumping && SelectedId == id)
             {
