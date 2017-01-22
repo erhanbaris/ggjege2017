@@ -40,30 +40,21 @@ public class CharacterManager : MonoBehaviour
     public void Restart()
     {
         LivePenguins.Clear();
-
-        while (true)
-        {
-            var randomId = UnityEngine.Random.Range(0, 7);
-            if (!LivePenguins.Contains(randomId))
-                LivePenguins.Add(randomId);
-
-            if (LivePenguins.Count >= 7)
-                break;
-        }
-
-        LivePenguins = LivePenguins.OrderBy(x => x).ToList();
-        GameManagerScript.Score = 0;
+		GameManagerScript.Score = 0;
 
         for (int i = 0; i < penguins.Length; ++i)
         {
+			LivePenguins.Add (i);
             var tmpTransform = spawnPoints[i].transform.position;
             tmpTransform = new Vector3(tmpTransform.x, tmpTransform.y + UnityEngine.Random.Range(35, 55), tmpTransform.z);
 
-            Instantiate(penguins[i], tmpTransform, spawnPoints[i].rotation);
-			var animator = penguins[i].GetComponent<Animator>();
-			Int32 randomIdle = UnityEngine.Random.Range (1, 4);
-			Debug.Log ("Random : " + randomIdle);
+			var penguin = Instantiate(penguins[i], tmpTransform, spawnPoints[i].rotation) as GameObject;
+			var animator = penguin.GetComponent<Animator>();
+			Int32 randomIdle = UnityEngine.Random.Range (1, 5);
+			penguin.transform.localScale = new Vector3 (animator.transform.localScale.x + UnityEngine.Random.Range(-3, 5), animator.transform.localScale.y  + UnityEngine.Random.Range(0, 3), animator.transform.localScale.z);
+
 			animator.SetInteger("IdleSpeed2", randomIdle);
+			animator.SetTrigger ("IdleSpeedChange");
 
             penguins[i].GetComponent<PenguinControlScript>().SetId(i);
             penguins[i].gameObject.SetActive(LivePenguins.Any(x => x == i));
