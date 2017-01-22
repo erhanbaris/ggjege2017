@@ -57,10 +57,14 @@ public class CharacterManager : MonoBehaviour
         for (int i = 0; i < penguins.Length; ++i)
         {
             var tmpTransform = spawnPoints[i].transform.position;
-            tmpTransform = new Vector3(tmpTransform.x, tmpTransform.y + UnityEngine.Random.Range(35, 55),
-                tmpTransform.z);
+            tmpTransform = new Vector3(tmpTransform.x, tmpTransform.y + UnityEngine.Random.Range(35, 55), tmpTransform.z);
 
             Instantiate(penguins[i], tmpTransform, spawnPoints[i].rotation);
+			var animator = penguins[i].GetComponent<Animator>();
+			Int32 randomIdle = UnityEngine.Random.Range (1, 4);
+			Debug.Log ("Random : " + randomIdle);
+			animator.SetInteger("IdleSpeed2", randomIdle);
+
             penguins[i].GetComponent<PenguinControlScript>().SetId(i);
             penguins[i].gameObject.SetActive(LivePenguins.Any(x => x == i));
         }
