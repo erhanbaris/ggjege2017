@@ -82,7 +82,6 @@ public class CharacterManager : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("Current Order : " + PenguinControlScript.SelectedId);
             lock (this)
             {
                 bool isFirstElementFetched = false;
@@ -104,21 +103,17 @@ public class CharacterManager : MonoBehaviour
                 }
 
                 PenguinControlScript.SelectedId = nextId;
-
-                Debug.Log("Penguin Order : " + PenguinControlScript.SelectedId);
             }
         }
     }
 
     public void PenguinDied(int penguinId)
     {
-        Debug.Log("Penguin Died : " + penguinId);
         LivePenguins.Remove(penguinId);
 
         if (LivePenguins.Count == 0)
         {
-            Debug.Log("Game Over");
-            Restart();
+			GameController.Instance.SetGameStatus(false);
         }
     }
 
