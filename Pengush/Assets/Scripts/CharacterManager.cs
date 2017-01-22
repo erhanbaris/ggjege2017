@@ -122,9 +122,11 @@ public class CharacterManager : MonoBehaviour
 				var nextId = getNext (PenguinControlScript.SelectedId);
 				var handUpPenguinId = getNext (nextId);
 
-				/*var penguinAnimator2 = penguinInstances[handUpPenguinId].GetComponent<Animator>();
-				penguinAnimator2.SetInteger("IdleSpeed2", 10);
-				penguinAnimator2.SetTrigger ("IdleSpeedChange");*/
+				/*for (int i = 0; i < penguinInstances.Count; i++) {
+					var penguinAnimator2 = penguinInstances[i].GetComponent<Animator>();
+					penguinAnimator2.SetInteger("IdleSpeed2", i == handUpPenguinId ? 10 : UnityEngine.Random.Range (1, 5));
+					penguinAnimator2.SetTrigger ("IdleSpeedChange");
+				}*/
 
                 PenguinControlScript.SelectedId = nextId;
 				Debug.Log ("Jump Waiting : " + PenguinControlScript.SelectedId);
