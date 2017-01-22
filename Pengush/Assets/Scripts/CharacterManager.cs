@@ -16,7 +16,6 @@ public class CharacterManager : MonoBehaviour
     public static bool Damaged = false;
     Color damagedColor = new Color(255f, 255f, 255f, 0.5f);
     float smoothColor = 10f;
-    UnityEngine.UI.Image damagedImage;
 
     public float dampTime = 1.15f;
     private Vector3 velocity = Vector3.zero;
@@ -29,11 +28,6 @@ public class CharacterManager : MonoBehaviour
     void Start()
     {
         Restart();
-
-        GameObject[] objs;
-        objs = GameObject.FindGameObjectsWithTag("BLOOD");
-        foreach (GameObject lightuser in objs)
-            damagedImage = lightuser.GetComponent<UnityEngine.UI.Image>();
     }
 
 
@@ -76,12 +70,6 @@ public class CharacterManager : MonoBehaviour
 
     void Update()
     {
-        if (Damaged)
-            damagedImage.color = damagedColor;
-        else
-            damagedImage.color = Color.Lerp(damagedImage.color, Color.clear, smoothColor * Time.deltaTime);
-        Damaged = false;
-
         if (Input.GetButtonDown("Jump"))
         {
             lock (this)

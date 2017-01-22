@@ -17,10 +17,12 @@ public class PenguinControlScript : MonoBehaviour
     private AudioSource audioSource;
     Vector3 currentJumpVelocity;
     bool isJumping = false;
+	Animator penguinAnimator;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+		penguinAnimator = GetComponent<Animator>();
     }
 
     public void SetId(int pId)
@@ -34,12 +36,20 @@ public class PenguinControlScript : MonoBehaviour
         {
             collision.gameObject.GetComponent<AudioSource>().Play();
             CharacterManager.Damaged = true;
-            this.gameObject.SetActive(false);
+            
+			penguinAnimator.SetBool ("Die", true);
+			Invoke ("diePenguin", 0.2f);
 
-            CharacterManager.Instance.PenguinDied(id);
+			CharacterManager.Instance.PenguinDied(id);
         }
     }
 
+	void diePenguin()
+	{
+		Debug.Log ("die penguin");
+		penguinAnimator.SetBool ("Die", false);
+		this.gameObject.SetActive(false);
+	}
 
     void OnTriggerEnter(Collider other)
     {
@@ -47,13 +57,15 @@ public class PenguinControlScript : MonoBehaviour
         {
             other.GetComponent<AudioSource>().Play();
             CharacterManager.Damaged = true;
-            this.gameObject.SetActive(false);
+
+			penguinAnimator.SetBool ("Die", true);
+			Invoke ("diePenguin", 0.2f);
 
             CharacterManager.Instance.PenguinDied(id);
         }
         else if (other.tag == "GREEN_FISH")
         {
-			other.GetComponent<AudioSource>().Play();
+			this.GetComponent<AudioSource>().PlayOneShot(EatClip);
             other.gameObject.SetActive(false);
             var gameScript = this.gameObject.GetComponent<GameManagerScript>();
             gameScript.AddScore(10);
