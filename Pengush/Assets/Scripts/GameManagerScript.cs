@@ -16,11 +16,6 @@ public class GameManagerScript : MonoBehaviour
 	void Awake()
 	{
 		Instance = (Instance == null) ? this : Instance;
-	}
-
-    // Use this for initialization
-    void Start()
-    {
 		var startObjects = GameObject.FindGameObjectsWithTag ("PendushEnd");
 		foreach (var item in startObjects)
 			item.GetComponent<UnityEngine.UI.Image> ().enabled = false;
@@ -29,14 +24,19 @@ public class GameManagerScript : MonoBehaviour
 		foreach (var item in startObjects)
 			item.GetComponent<UnityEngine.UI.Text> ().text = "";
 
-        GameObject[] objs;
-        objs = GameObject.FindGameObjectsWithTag("SCORETEXT");
+		GameObject[] objs;
+		objs = GameObject.FindGameObjectsWithTag("SCORETEXT");
 
-        foreach (GameObject lightUser in objs)
-        {
-            txtScore = lightUser.GetComponent<UnityEngine.UI.Text>();
-            txtScore.text = Score.ToString();
-        }
+		foreach (GameObject lightUser in objs)
+		{
+			txtScore = lightUser.GetComponent<UnityEngine.UI.Text>();
+			txtScore.text = Score.ToString();
+		}
+	}
+
+    // Use this for initialization
+    void Start()
+    {
 
 		//CharacterManager.Instance.Restart ();
     }
@@ -56,8 +56,7 @@ public class GameManagerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (!IsGameStarted && Input.GetKeyDown(KeyCode.Space))
-			SetGameStatus (true);
+		
     }
 
 	public void StartGame()

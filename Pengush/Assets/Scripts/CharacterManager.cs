@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    public GameObject[] penguins;
+	public GameObject[] penguins;
     public Transform[] spawnPoints;
     public Transform Arrow;
 
@@ -23,11 +23,12 @@ public class CharacterManager : MonoBehaviour
     void Awake()
     {
         Instance = (Instance == null) ? this : Instance;
-    }
+		Restart();
+	}
 
     void Start()
     {
-        Restart();
+       
     }
 
 
