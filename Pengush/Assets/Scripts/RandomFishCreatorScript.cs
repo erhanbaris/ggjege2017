@@ -9,7 +9,7 @@ public class RandomFishCreatorScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		InvokeRepeating ("fishSpawner", 8f, 15f);
+		InvokeRepeating ("fishSpawner", 8f, 10f);
 		fishSpawner ();
 	}
 	
