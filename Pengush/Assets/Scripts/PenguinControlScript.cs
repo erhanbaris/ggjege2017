@@ -34,13 +34,11 @@ public class PenguinControlScript : MonoBehaviour
     {
         if (collision.transform.tag == "ENEMY")
         {
-            collision.gameObject.GetComponent<AudioSource>().Play();
-            CharacterManager.Damaged = true;
-            
+			collision.gameObject.GetComponent<AudioSource> ().Play ();            
 			penguinAnimator.SetBool ("Die", true);
 			Invoke ("diePenguin", 0.2f);
 
-			CharacterManager.Instance.PenguinDied(id);
+            CharacterManager.Instance.PenguinDied(id);
         }
     }
 
@@ -56,8 +54,6 @@ public class PenguinControlScript : MonoBehaviour
         if (other.tag == "ENEMY")
         {
             other.GetComponent<AudioSource>().Play();
-            CharacterManager.Damaged = true;
-
 			penguinAnimator.SetBool ("Die", true);
 			Invoke ("diePenguin", 0.2f);
 

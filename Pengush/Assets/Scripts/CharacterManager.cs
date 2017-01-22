@@ -13,6 +13,9 @@ public class CharacterManager : MonoBehaviour
 
     public static CharacterManager Instance;
     public static List<int> LivePenguins = new List<int>();
+
+	public static List<GameObject> penguinInstances = new List<GameObject>();
+
     public static bool Damaged = false;
     Color damagedColor = new Color(255f, 255f, 255f, 0.5f);
     float smoothColor = 10f;
@@ -43,6 +46,10 @@ public class CharacterManager : MonoBehaviour
         LivePenguins.Clear();
 		GameManagerScript.Score = 0;
 
+
+		foreach (var item in penguinInstances)
+			Destroy (item);
+
         for (int i = 0; i < penguins.Length; ++i)
         {
 			LivePenguins.Add (i);
@@ -52,15 +59,15 @@ public class CharacterManager : MonoBehaviour
 			var penguin = Instantiate(penguins[i], tmpTransform, spawnPoints[i].rotation) as GameObject;
 			var animator = penguin.GetComponent<Animator>();
 			Int32 randomIdle = UnityEngine.Random.Range (1, 5);
-			penguin.transform.localScale = new Vector3 (animator.transform.localScale.x + UnityEngine.Random.Range(-3, 5), animator.transform.localScale.y  + UnityEngine.Random.Range(0, 3), animator.transform.localScale.z);
+			penguin.transform.localScale = new Vector3 (penguin.transform.localScale.x + UnityEngine.Random.Range(-3, 5), penguin.transform.localScale.y  + UnityEngine.Random.Range(0, 3), penguin.transform.localScale.z);
 
 			animator.SetInteger("IdleSpeed2", randomIdle);
 			animator.SetTrigger ("IdleSpeedChange");
 
-            penguins[i].GetComponent<PenguinControlScript>().SetId(i);
-            penguins[i].gameObject.SetActive(LivePenguins.Any(x => x == i));
-         
 
+			penguin.GetComponent<PenguinControlScript>().SetId(i);
+			penguin.gameObject.SetActive(LivePenguins.Any(x => x == i));
+			penguinInstances.Add (penguin);
         }
 
 		PenguinControlScript.SelectedId = -1;
@@ -95,9 +102,10 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+
     public void PenguinDied(int penguinId)
     {
-        LivePenguins.Remove(penguinId);
+		LivePenguins.Remove(penguinId);
 
         if (LivePenguins.Count == 0)
         {

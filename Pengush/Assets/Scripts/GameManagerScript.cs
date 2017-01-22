@@ -15,22 +15,25 @@ public class GameManagerScript : MonoBehaviour
 
 	void Awake()
 	{
-		Instance = (Instance == null) ? this : Instance;
-		var startObjects = GameObject.FindGameObjectsWithTag ("PendushEnd");
-		foreach (var item in startObjects)
-			item.GetComponent<UnityEngine.UI.Image> ().enabled = false;
-
-		startObjects = GameObject.FindGameObjectsWithTag ("PendushScore");
-		foreach (var item in startObjects)
-			item.GetComponent<UnityEngine.UI.Text> ().text = "";
-
-		GameObject[] objs;
-		objs = GameObject.FindGameObjectsWithTag("SCORETEXT");
-
-		foreach (GameObject lightUser in objs)
+		if (Instance == null)
 		{
-			txtScore = lightUser.GetComponent<UnityEngine.UI.Text>();
-			txtScore.text = Score.ToString();
+			Instance = this;
+			var startObjects = GameObject.FindGameObjectsWithTag ("PendushEnd");
+			foreach (var item in startObjects)
+				item.GetComponent<UnityEngine.UI.Image> ().enabled = false;
+
+			startObjects = GameObject.FindGameObjectsWithTag ("PendushScore");
+			foreach (var item in startObjects)
+				item.GetComponent<UnityEngine.UI.Text> ().text = "";
+
+			GameObject[] objs;
+			objs = GameObject.FindGameObjectsWithTag("SCORETEXT");
+
+			foreach (GameObject lightUser in objs)
+			{
+				txtScore = lightUser.GetComponent<UnityEngine.UI.Text>();
+				txtScore.text = Score.ToString();
+			}
 		}
 	}
 
@@ -44,12 +47,10 @@ public class GameManagerScript : MonoBehaviour
     public void AddScore(int value)
     {
         Score += value;
-        txtScore.text = Score.ToString();
     }
 
     public void SetScore(int value)
     {
-        txtScore.text = value.ToString();
     }
 
 
@@ -61,12 +62,20 @@ public class GameManagerScript : MonoBehaviour
 
 	public void StartGame()
 	{
-		Start ();
 		SetGameStatus(true);
 	}
 
 	public void RestartGame()
 	{
+		GameObject.Find ("End2").GetComponent<UnityEngine.UI.Button> ().interactable = false;
+		var startObjects = GameObject.FindGameObjectsWithTag ("PendushEnd");
+		foreach (var item in startObjects)
+			item.GetComponent<UnityEngine.UI.Image> ().enabled = false;
+
+		startObjects = GameObject.FindGameObjectsWithTag ("PendushScore");
+		foreach (var item in startObjects)
+			item.GetComponent<UnityEngine.UI.Text> ().text = "";
+		
 		StartGame();
 		CharacterManager.Instance.Restart ();
 	}
@@ -87,6 +96,7 @@ public class GameManagerScript : MonoBehaviour
 			if (startObjects != null)
 				startObjects.GetComponent<UnityEngine.UI.Text>().text = "SCORE: " + GameManagerScript.Score;
 
+			GameObject.Find ("End2").GetComponent<UnityEngine.UI.Button> ().interactable = true;
 		}
 	}
 }
