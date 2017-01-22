@@ -19,7 +19,7 @@ public class RandomFishCreatorScript : MonoBehaviour {
 	}
 
 	void fishSpawner(){
-		int fishIndex = Random.Range (0,fishes.Length );
+		int fishIndex = Random.Range (0,fishes.Length);
 		Instantiate (fishes [fishIndex],fishSpawnPoint.position,fishSpawnPoint.rotation);
 	}
 }

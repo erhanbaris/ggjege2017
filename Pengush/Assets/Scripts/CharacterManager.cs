@@ -74,9 +74,9 @@ public class CharacterManager : MonoBehaviour
 			penguinInstances.Add (penguin);
         }
 
-		/*var penguinAnimator = penguinInstances[0].GetComponent<Animator>();
+		var penguinAnimator = penguinInstances[0].GetComponent<Animator>();
 		penguinAnimator.SetInteger("IdleSpeed2", 10);
-		penguinAnimator.SetTrigger ("IdleSpeedChange");*/
+		penguinAnimator.SetTrigger ("IdleSpeedChange");
 
 		PenguinControlScript.SelectedId = -1;
     }
@@ -122,11 +122,11 @@ public class CharacterManager : MonoBehaviour
 				var nextId = getNext (PenguinControlScript.SelectedId);
 				var handUpPenguinId = getNext (nextId);
 
-				/*for (int i = 0; i < penguinInstances.Count; i++) {
+				for (int i = 0; i < penguinInstances.Count; i++) {
 					var penguinAnimator2 = penguinInstances[i].GetComponent<Animator>();
 					penguinAnimator2.SetInteger("IdleSpeed2", i == handUpPenguinId ? 10 : UnityEngine.Random.Range (1, 5));
 					penguinAnimator2.SetTrigger ("IdleSpeedChange");
-				}*/
+				}
 
                 PenguinControlScript.SelectedId = nextId;
 				Debug.Log ("Jump Waiting : " + PenguinControlScript.SelectedId);
